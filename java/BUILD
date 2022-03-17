@@ -75,7 +75,7 @@ JAVA_VERSIONS = [
         debs = [deb_file(
             arch,
             distro,
-            "openjdk-" + java_version + "-jre-headless",
+            "sapmachine-" + java_version + "-jdk",
         )],
         # We expect users to use:
         # cmd = ["/path/to/deploy.jar", "--option1", ...]

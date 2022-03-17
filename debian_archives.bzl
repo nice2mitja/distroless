@@ -381,6 +381,18 @@ def repositories():
         urls = ["https://snapshot.debian.org/archive/debian/20220227T204757Z/pool/main/n/netbase/netbase_6.3_all.deb"],
     )
     http_file(
+        name = "amd64_debian11_sapmachine-11-jdk-headless",
+        downloaded_file_path = "sapmachine-11-jdk_11.0.14.1_amd64.deb",
+        sha256 = "a29a0b5d79fc18bd4f74282abc3610eb859ec28d88e68177ebda7513c65cf7b2",
+        urls = ["http://dist.sapmachine.io/debian/amd64/sapmachine-11-jdk_11.0.14.1_amd64.deb"],
+    )
+    http_file(
+        name = "amd64_debian11_sapmachine-11-jdk",
+        downloaded_file_path = "sapmachine-11-jdk_11.0.14.1_amd64.deb",
+        sha256 = "a29a0b5d79fc18bd4f74282abc3610eb859ec28d88e68177ebda7513c65cf7b2",
+        urls = ["http://dist.sapmachine.io/debian/amd64/sapmachine-11-jdk_11.0.14.1_amd64.deb"],
+    )
+    http_file(
         name = "amd64_debian11_openjdk-11-jdk-headless",
         downloaded_file_path = "openjdk-11-jdk-headless_11.0.14+9-1~deb11u1_amd64.deb",
         sha256 = "b7841f36a6dd27f6d6550f3895e2a49c4b638e310d76afbe4f4a75e034eac37f",

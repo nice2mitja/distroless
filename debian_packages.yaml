@@ -90,4 +90,6 @@
     - "openjdk-11-jre-headless"
     - "openjdk-17-jdk-headless"
     - "openjdk-17-jre-headless"
+    - "sapmachine-11-jdk"
+    - "sapmachine-17-jdk"
     - "zlib1g"

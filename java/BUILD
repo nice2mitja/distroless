@@ -84,7 +84,10 @@ JAVA_VERSIONS = [
             "-jar",
         ],
         env = {"JAVA_VERSION": jre_ver(DEBIAN_VERSIONS[arch][distro]["openjdk-" + java_version + "-jre-headless"])},
-        symlinks = {"/usr/bin/java": "/usr/lib/jvm/java-" + java_version + "-openjdk-" + arch + "/bin/java"},
+        # symlinks = {"/usr/bin/java": "/usr/lib/jvm/sapmachine-" + java_version + "-openjdk-" + arch + "/bin/java"},
+        #/usr/lib/jvm/sapmachine-11/
+        symlinks = {"/usr/bin/java": "/usr/lib/jvm/sapmachine-" + java_version + "/bin/java"},
+        
     )
     for java_version in JAVA_VERSIONS
     for arch in ARCHITECTURES

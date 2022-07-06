@@ -4,6 +4,11 @@ load("@io_bazel_rules_docker//container:container.bzl", "container_bundle")
 load("//:checksums.bzl", "ARCHITECTURES", "BASE_ARCHITECTURES")
 load("//base:distro.bzl", "DISTROS", "LANGUAGE_DISTROS")
 
+JAVA_ARCHITECTURES = BASE_ARCHITECTURES + [
+    "s390x",
+    "ppc64le",
+]
+
 LABEL_USERS = [
     ("latest", "root"),
     ("nonroot", "nonroot"),
@@ -120,15 +125,9 @@ PYTHON3.update({
 })
 
 NODEJS = {
-    "{REGISTRY}/{PROJECT_ID}/nodejs:12": "//nodejs:nodejs12_amd64_debian11",
     "{REGISTRY}/{PROJECT_ID}/nodejs:14": "//nodejs:nodejs14_amd64_debian11",
-    "{REGISTRY}/{PROJECT_ID}/nodejs:12-debug": "//nodejs:nodejs12_debug_amd64_debian11",
     "{REGISTRY}/{PROJECT_ID}/nodejs:14-debug": "//nodejs:nodejs14_debug_amd64_debian11",
-    "{REGISTRY}/{PROJECT_ID}/nodejs-debian11:latest": "//nodejs:nodejs16_amd64_debian11",
-    "{REGISTRY}/{PROJECT_ID}/nodejs-debian11:debug": "//nodejs:nodejs16_debug_amd64_debian11",
-    "{REGISTRY}/{PROJECT_ID}/nodejs-debian11:12": "//nodejs:nodejs12_amd64_debian11",
     "{REGISTRY}/{PROJECT_ID}/nodejs-debian11:14": "//nodejs:nodejs14_amd64_debian11",
-    "{REGISTRY}/{PROJECT_ID}/nodejs-debian11:12-debug": "//nodejs:nodejs12_debug_amd64_debian11",
     "{REGISTRY}/{PROJECT_ID}/nodejs-debian11:14-debug": "//nodejs:nodejs14_debug_amd64_debian11",
 }
 
@@ -136,8 +135,6 @@ NODEJS.update({
     "{REGISTRY}/{PROJECT_ID}/nodejs:" + tag_base + "-" + arch: "//nodejs:nodejs16" + suffix + "_" + arch + "_debian11"
     for arch in BASE_ARCHITECTURES
     for (tag_base, suffix) in [
-        ("latest", ""),
-        ("debug", "_debug"),
         ("16", ""),
         ("16-debug", "_debug"),
     ]
@@ -147,10 +144,31 @@ NODEJS.update({
     "{REGISTRY}/{PROJECT_ID}/nodejs-" + distro + ":" + tag_base + "-" + arch: "//nodejs:nodejs16" + suffix + "_" + arch + "_" + distro
     for arch in BASE_ARCHITECTURES
     for (tag_base, suffix) in [
-        ("latest", ""),
-        ("debug", "_debug"),
         ("16", ""),
         ("16-debug", "_debug"),
+    ]
+    for distro in LANGUAGE_DISTROS
+})
+
+NODEJS.update({
+    "{REGISTRY}/{PROJECT_ID}/nodejs:" + tag_base + "-" + arch: "//nodejs:nodejs18" + suffix + "_" + arch + "_debian11"
+    for arch in BASE_ARCHITECTURES
+    for (tag_base, suffix) in [
+        ("latest", ""),
+        ("debug", "_debug"),
+        ("18", ""),
+        ("18-debug", "_debug"),
+    ]
+})
+
+NODEJS.update({
+    "{REGISTRY}/{PROJECT_ID}/nodejs-" + distro + ":" + tag_base + "-" + arch: "//nodejs:nodejs18" + suffix + "_" + arch + "_" + distro
+    for arch in BASE_ARCHITECTURES
+    for (tag_base, suffix) in [
+        ("latest", ""),
+        ("debug", "_debug"),
+        ("18", ""),
+        ("18-debug", "_debug"),
     ]
     for distro in LANGUAGE_DISTROS
 })
@@ -164,7 +182,7 @@ JAVA_BASE = {
 
 JAVA_BASE.update({
     "{REGISTRY}/{PROJECT_ID}/java-base-debian11:" + tag_base + "-" + arch: "//java:java_base_" + label + "_" + arch + "_debian11"
-    for arch in BASE_ARCHITECTURES
+    for arch in JAVA_ARCHITECTURES
     for (tag_base, label) in [
         ("latest", "root"),
         ("nonroot", "nonroot"),
@@ -188,7 +206,7 @@ JAVA11.update({
         ("debug", "debug_root"),
         ("debug-nonroot", "debug_nonroot"),
     ]
-    for arch in BASE_ARCHITECTURES
+    for arch in JAVA_ARCHITECTURES
 })
 
 JAVA17 = {
@@ -206,7 +224,7 @@ JAVA17.update({
         ("debug", "debug_root"),
         ("debug-nonroot", "debug_nonroot"),
     ]
-    for arch in BASE_ARCHITECTURES
+    for arch in JAVA_ARCHITECTURES
 })
 
 JETTY = {

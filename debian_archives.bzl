@@ -393,6 +393,18 @@ def repositories():
         urls = ["http://dist.sapmachine.io/debian/amd64/sapmachine-11-jdk_11.0.14.1_amd64.deb"],
     )
     http_file(
+        name = "amd64_debian11_sapmachine-17-jdk-headless",
+        downloaded_file_path = "sapmachine-17-jdk_17.0.3.0.1_amd64.deb",
+        sha256 = "0977cda5cbc4825ca1250078dd46a8fbd5502c61e9362c61b5bef829f1c6f251",
+        urls = ["http://dist.sapmachine.io/debian/amd64/sapmachine-17-jdk_17.0.3.0.1_amd64.deb"],
+    )
+    http_file(
+        name = "amd64_debian11_sapmachine-17-jdk",
+        downloaded_file_path = "sapmachine-17-jdk_17.0.3.0.1_amd64.deb",
+        sha256 = "0977cda5cbc4825ca1250078dd46a8fbd5502c61e9362c61b5bef829f1c6f251",
+        urls = ["http://dist.sapmachine.io/debian/amd64/sapmachine-17-jdk_17.0.3.0.1_amd64.deb"],
+    )
+    http_file(
         name = "amd64_debian11_openjdk-11-jdk-headless",
         downloaded_file_path = "openjdk-11-jdk-headless_11.0.15+10-1~deb11u1_amd64.deb",
         sha256 = "c1f4f6db8840207c12d3819344ae3d1b489e5308776528e923f2012e31e40753",
